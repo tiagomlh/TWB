@@ -222,11 +222,9 @@ class OverviewPage:
         self.villages_data: Dict[str, Village] = {}
         self.parse_production_table()
         self.parse_header_info()
-        self.url_prior = None
 
     def _get_overview_villages_data(self):
         """Get the overview villages data using the wrapper object."""
-        self.url_prior = self.wrapper.last_response.url
         return self.wrapper.get_url("game.php?screen=overview_villages")
 
     def _get_overview_with_villages_overview(self):
@@ -256,18 +254,18 @@ class OverviewPage:
         if self.production_table:
             try:
                 self._get_overview_with_villages_overview()
-                return True
+                return
             except IndexError:
                 # World where overview page does not contain any villages if only one is available
-                get_from_url = re.search(r"village=(\w+)", self.url_prior)
+                get_from_url = re.search(r"village=([\da-z]+)", self.result_get.text)
                 if get_from_url:
                     village_id = get_from_url.group(1)
+                    print("Detected Village ID %s from URLs" % village_id)
                     if village_id not in self.villages_data:
                         print("No villages on overview page, assuming village ID is within URL")
                         self.villages_data[village_id] = None
-                        return True
-        print("Error in automatically detecting villages")
-        return False
+                        return
+        return
 
     def parse_header_info(self) -> None:
         """Parse header information to get world options."""
