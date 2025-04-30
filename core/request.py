@@ -84,7 +84,7 @@ class WebWrapper:
                 return self.get_url(url, headers)
             return res
         except Exception as e:
-            self.logger.warning("GET %s: %s", url, str(e))
+            self.logger.warning("GET %s: %s: RES: %s", url, str(e), str(res))
             return None
 
     def post_url(self, url, data, headers=None):

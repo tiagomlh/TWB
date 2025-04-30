@@ -362,6 +362,10 @@ class ResourceManager:
         """
         url = f"game.php?village={self.village_id}&screen=market&mode=all_own_offer"
         data = self.wrapper.get_url(url)
+        if not data:
+            self.logger.warning("No data found %s", url)
+            return
+
         existing = re.findall(r'data-id="(\d+)".+?data-village="(\d+)"', data.text)
         for entry in existing:
             offer, village = entry
