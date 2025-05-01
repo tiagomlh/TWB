@@ -84,7 +84,7 @@ class WebWrapper:
                 return self.get_url(url, headers)
             return res
         except Exception as e:
-            self.logger.warning("GET %s: %s: RES: %s", url, str(e), str(res))
+            self.logger.warning("GET %s: %s", url, str(e))
             return None
 
     def post_url(self, url, data, headers=None):
@@ -216,7 +216,7 @@ class WebWrapper:
         if 'h' not in data:
             data['h'] = self.last_h
         res = self.post_url(url, data=data, headers=custom)
-        if res.status_code == 200:
+        if res is not None and res.status_code == 200:
             try:
                 return res.json()
             except:
