@@ -195,6 +195,10 @@ class DefenceManager:
         url = f"game.php?village={self.village_id}&screen=flags"
         result = self.wrapper.get_url(url=url)
 
+        if not result:
+            self.logger.warning("Error request %s: not result", url)
+            return
+
         self._can_change_flag = '<span class="timer cooldown">' not in result.text
 
         get_flag_data = re.search(r"FlagsScreen\.setFlagCounts\((.+?)\);", result.text)

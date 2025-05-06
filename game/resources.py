@@ -418,6 +418,11 @@ class ResourceManager:
                 # check incoming resources
                 url = f"game.php?village={self.village_id}&screen=market&mode=other_offer"
                 res = self.wrapper.get_url(url=url)
+
+                if not result:
+                    self.logger.warning("Error request %s: not result", url)
+                    return
+
                 p = re.compile(
                     r"Aankomend:\s.+\"icon header (.+?)\".+?<\/span>(.+) ", re.M
                 )

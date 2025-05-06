@@ -28,7 +28,7 @@ class Extractor:
         """
         Detects the game state that is available on most pages
         """
-        if type(res) != str:
+        if res is not None AND res and type(res) != str:
             res = res.text
         grabber = re.search(r'TribalWars\.updateGameData\((.+?)\);', res)
         if grabber:
@@ -208,7 +208,7 @@ class Extractor:
         Detects input fiels in the attack form
         ... because there are many :)
         """
-        if type(res) != str:
+        if res is not None AND type(res) != str:
             res = res.text
         data = re.findall(r'(?s)<input.+?name="(.+?)".+?value="(.*?)"', res)
         return data
