@@ -183,7 +183,7 @@ class Extractor:
         """
         Detects active recruitment entries
         """
-        if not isinstance(res, str):
+        if type(res) != str:
             res = res.text
         builder = re.findall(r"(?s)TrainOverview\.cancelOrder\((\d+)\)", res)
         return builder
@@ -218,7 +218,7 @@ class Extractor:
         Detects input fiels in the attack form
         ... because there are many :)
         """
-        if not isinstance(res, str):
+        if type(res) != str:
             res = res.text
         data = re.findall(r'(?s)<input.+?name="(.+?)".+?value="(.*?)"', res)
         return data

@@ -196,7 +196,7 @@ class WebWrapper:
         payload = f"game.php?{urlencode(req)}"
         url = urljoin(self.endpoint, payload)
         res = self.get_url(url, headers=custom)
-        if res.status_code == 200:
+        if res is not None and res.status_code == 200:
             try:
                 return res.json()
             except ValueError:
@@ -221,7 +221,7 @@ class WebWrapper:
         if "h" not in data:
             data["h"] = self.last_h
         res = self.post_url(url, data=data, headers=custom)
-        if res.status_code == 200:
+        if res is not None and res.status_code == 200:
             try:
                 return res.json()
             except ValueError:
@@ -246,7 +246,7 @@ class WebWrapper:
         if "h" not in data:
             data["h"] = self.last_h
         res = self.post_url(url, data=data, headers=custom)
-        if res.status_code == 200:
+        if res is not None and res.status_code == 200:
             try:
                 return res.json()
             except ValueError:

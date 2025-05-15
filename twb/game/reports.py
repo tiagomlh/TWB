@@ -125,6 +125,10 @@ class ReportManager:
             url = f"game.php?village={self.village_id}&screen=report&mode=all&group_id=0&view={report_id}"
             data = self.wrapper.get_url(url)
 
+            if not data:
+                self.logger.warning("Error request %s: not result", url)
+                return
+
             get_type = re.search(r'class="report_(\w+)', data.text)
             if get_type:
                 report_type = get_type.group(1)
