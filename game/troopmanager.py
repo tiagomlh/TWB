@@ -529,6 +529,9 @@ class TroopManager:
         """
         data = self.wrapper.get_action(action=building, village_id=self.village_id)
 
+        if not data:
+             return None
+
         existing = Extractor.active_recruit_queue(data)
         if existing:
             self.logger.warning(

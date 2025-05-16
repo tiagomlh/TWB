@@ -172,9 +172,6 @@ class Extractor:
         """
         Detects active recruitment entries
         """
-        if not res:
-            return None
-
         if type(res) != str:
             res = res.text
         builder = re.findall(r'(?s)TrainOverview\.cancelOrder\((\d+)\)', res)
