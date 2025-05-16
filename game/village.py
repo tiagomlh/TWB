@@ -535,6 +535,10 @@ class Village:
             )
 
         res = self.wrapper.get_action(village_id=self.village_id, action="overview")
+
+        if not res:
+                    return None
+
         self.game_data = Extractor.game_state(res)
         self.resman.update(self.game_data)
         if self.get_config(
