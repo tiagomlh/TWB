@@ -337,6 +337,29 @@ class AttackManager:
                 return False
         return True
 
+    def has_owner_now(self, x, y):
+
+        #se tem proprietário
+        # game.php?village=5167&screen=api&ajax=target_selection&input=482%7C573&type=coord&request_id=1&limit=6&offset=0
+        # game.php?village={self.village_id}&screen=api&ajax=target_selection&input={x}%7C{y}&type=coord&request_id=1&limit=6&offset=0
+        #{"villages":[{"id":"1911","x":"482","y":"573","name":"Aldeia de b\u00e1rbaros","player_id":"0","bonus_id":null,"tile_id":null,"village_type":"standard","player_name":null,"points":"414","distance":"325","event_special":"0","image":"https:\/\/dsbr.innogamescdn.com\/asset\/28bd5527\/graphic\/map\/icon\/v2_left_icon.webp"}],"request_id":1,"more":false,"offset":0}
+
+        url = f"game.php?village={self.village_id}&screen=api&ajax=target_selection&input={x}%7C{y}&type=coord&request_id=1&limit=6&offset=0"
+        pre_attack = self.wrapper.get_url(url)
+
+        response = json.loads(pre_attack, strict=False)
+        self.logger.debug(
+            "response object: %s ", response
+        )
+
+        player_id = response.village[0].player_id
+
+        self.logger.debug(
+            "Village %s (%s|%s) player_id: %s", vid, x, y, player_id
+        )
+
+        return player_id != "0"
+
     def attack(self, vid, troops=None):
         """
         Send a TW attack
@@ -356,13 +379,21 @@ class AttackManager:
             return False
 
         x, y = self.map.map_pos[vid]
+
+        if self.has_owner_now(x, y) and vid not in self.extra_farm:
+            self.logger.debug(
+                ">>>>>>>>>>>>>>>>>>>>>>> Village %s (%s|%s) has owner NOW and not is in additional_farms to auto attack", vid, x, y
+            )
+            self.ignored.append(vid)
+            return False
+
         post_data = {"x": x, "y": y, "target_type": "coord", "attack": "Aanvallen"}
         pre_data.update(post_data)
-
         confirm_url = f"game.php?village={self.village_id}&screen=place&try=confirm"
         conf = self.wrapper.post_url(url=confirm_url, data=pre_data)
         if '<div class="error_box">' in conf.text:
             return False
+
         duration = Extractor.attack_duration(conf)
         if self.forced_peace_time:
             now = datetime.now()
