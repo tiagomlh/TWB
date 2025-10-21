@@ -349,7 +349,12 @@ class AttackManager:
         url = f"game.php?village={self.village_id}&screen=api&ajax=target_selection&input={x}%7C{y}&type=coord&request_id=1&limit=6&offset=0"
         pre_attack = self.wrapper.get_url(url)
 
+        self.logger.debug(
+            "Village %s (%s|%s) response pre_attack: %s", vid, x, y, pre_attack
+        )
+
         response = json.loads(pre_attack, strict=False)
+
         self.logger.debug(
             "response object: %s ", response
         )

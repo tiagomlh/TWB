@@ -1,4 +1,5 @@
-I crashed :(   name 'json' is not defined
+limit=6&offset=0 [200]
+I crashed :(   the JSON object must be str, bytes or bytearray, not Response
 Traceback (most recent call last):
   File "/Volumes/storage/game/tw/shalum-br37/twb.py", line 445, in main
     t.start()
@@ -15,20 +16,22 @@ Traceback (most recent call last):
   File "/Volumes/storage/game/tw/shalum-br37/game/village.py", line 493, in run_farming
     self.attack.run()
     ~~~~~~~~~~~~~~~^^
-  File "/Volumes/storage/game/tw/shalum-br37/game/attack.py", line 84, in run
+  File "/Volumes/storage/game/tw/shalum-br37/game/attack.py", line 86, in run
     out_res = self.send_farm(target, template)
-  File "/Volumes/storage/game/tw/shalum-br37/game/attack.py", line 104, in send_farm
+  File "/Volumes/storage/game/tw/shalum-br37/game/attack.py", line 106, in send_farm
     cached = self.can_attack(vid=target["id"], clear=False)
-  File "/Volumes/storage/game/tw/shalum-br37/game/attack.py", line 260, in can_attack
+  File "/Volumes/storage/game/tw/shalum-br37/game/attack.py", line 262, in can_attack
     if self.scout(vid):
        ~~~~~~~~~~^^^^^
-  File "/Volumes/storage/game/tw/shalum-br37/game/attack.py", line 245, in scout
+  File "/Volumes/storage/game/tw/shalum-br37/game/attack.py", line 247, in scout
     if self.attack(vid, troops=troops):
        ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
-  File "/Volumes/storage/game/tw/shalum-br37/game/attack.py", line 383, in attack
+  File "/Volumes/storage/game/tw/shalum-br37/game/attack.py", line 385, in attack
     if self.has_owner_now(x, y) and vid not in self.extra_farm:
        ~~~~~~~~~~~~~~~~~~^^^^^^
-  File "/Volumes/storage/game/tw/shalum-br37/game/attack.py", line 350, in has_owner_now
+  File "/Volumes/storage/game/tw/shalum-br37/game/attack.py", line 352, in has_owner_now
     response = json.loads(pre_attack, strict=False)
-               ^^^^
-NameError: name 'json' is not defined. Did you forget to import 'json'?
+  File "/usr/local/Cellar/python@3.13/3.13.3/Frameworks/Python.framework/Versions/3.13/lib/python3.13/json/__init__.py", line 339, in loads
+    raise TypeError(f'the JSON object must be str, bytes or bytearray, '
+                    f'not {s.__class__.__name__}')
+TypeError: the JSON object must be str, bytes or bytearray, not Response
