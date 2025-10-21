@@ -238,6 +238,10 @@ class AttackManager:
         """
         Attempt to send scouts to a farm
         """
+
+        if self.scout_farm_amount == 0:
+            return False
+
         if "spy" not in self.troopmanager.troops or int(self.troopmanager.troops["spy"]) < self.scout_farm_amount:
             self.logger.debug(
                 "Cannot scout %s at the moment because insufficient unit: spy", vid
