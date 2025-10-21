@@ -1,5 +1,5 @@
-2025-10-21 00:12:50 - Requests - DEBUG - GET https://br137.tribalwars.com.br/game.php?village=5698&screen=place&target=5328 [200]
-I crashed :(   list index out of range
+                                                                        2025-10-21 00:23:26 - Requests - DEBUG - GET https://br137.tribalwars.com.br/game.php?village=5698&screen=place&target=5328 [200]
+I crashed :(   'list' object has no attribute 'group'
 Traceback (most recent call last):
   File "/Volumes/storage/game/tw/shalum-br37/twb.py", line 445, in main
     t.start()
@@ -30,6 +30,6 @@ Traceback (most recent call last):
     if self.has_owner_now(pre_attack) and vid not in self.extra_farm:
        ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
   File "/Volumes/storage/game/tw/shalum-br37/game/attack.py", line 350, in has_owner_now
-    return owner[0] != "Bárbaros"
-           ~~~~~^^^
-IndexError: list index out of range
+    return owner.group(1) != "Bárbaros"
+           ^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'group'

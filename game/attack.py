@@ -347,6 +347,11 @@ class AttackManager:
         #{"villages":[{"id":"1911","x":"482","y":"573","name":"Aldeia de b\u00e1rbaros","player_id":"0","bonus_id":null,"tile_id":null,"village_type":"standard","player_name":null,"points":"414","distance":"325","event_special":"0","image":"https:\/\/dsbr.innogamescdn.com\/asset\/28bd5527\/graphic\/map\/icon\/v2_left_icon.webp"}],"request_id":1,"more":false,"offset":0}
 
         owner = Extractor.attack_owner(res)
+
+        self.logger.debug(
+            "Village owner: %s", owner
+        )
+
         return owner.group(1) != "Bárbaros"
 
 #         url = f"game.php?village={self.village_id}&screen=api&ajax=target_selection&input={x}%7C{y}&type=coord&request_id=1&limit=6&offset=0"
