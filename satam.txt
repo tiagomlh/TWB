@@ -1,5 +1,4 @@
-limit=6&offset=0 [200]
-I crashed :(   the JSON object must be str, bytes or bytearray, not Response
+I crashed :(   name 'vid' is not defined
 Traceback (most recent call last):
   File "/Volumes/storage/game/tw/shalum-br37/twb.py", line 445, in main
     t.start()
@@ -26,12 +25,11 @@ Traceback (most recent call last):
   File "/Volumes/storage/game/tw/shalum-br37/game/attack.py", line 247, in scout
     if self.attack(vid, troops=troops):
        ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
-  File "/Volumes/storage/game/tw/shalum-br37/game/attack.py", line 385, in attack
+  File "/Volumes/storage/game/tw/shalum-br37/game/attack.py", line 390, in attack
     if self.has_owner_now(x, y) and vid not in self.extra_farm:
        ~~~~~~~~~~~~~~~~~~^^^^^^
-  File "/Volumes/storage/game/tw/shalum-br37/game/attack.py", line 352, in has_owner_now
-    response = json.loads(pre_attack, strict=False)
-  File "/usr/local/Cellar/python@3.13/3.13.3/Frameworks/Python.framework/Versions/3.13/lib/python3.13/json/__init__.py", line 339, in loads
-    raise TypeError(f'the JSON object must be str, bytes or bytearray, '
-                    f'not {s.__class__.__name__}')
-TypeError: the JSON object must be str, bytes or bytearray, not Response
+  File "/Volumes/storage/game/tw/shalum-br37/game/attack.py", line 353, in has_owner_now
+    "Village %s (%s|%s) response pre_attack: %s", vid, x, y, pre_attack
+                                                  ^^^
+NameError: name 'vid' is not defined. Did you mean: 'id'?
+

@@ -350,7 +350,7 @@ class AttackManager:
         pre_attack = self.wrapper.get_url(url)
 
         self.logger.debug(
-            "Village %s (%s|%s) response pre_attack: %s", vid, x, y, pre_attack
+            "Village (%s|%s) response pre_attack: %s", x, y, pre_attack
         )
 
         response = json.loads(pre_attack, strict=False)
