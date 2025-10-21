@@ -1,0 +1,34 @@
+I crashed :(   name 'json' is not defined
+Traceback (most recent call last):
+  File "/Volumes/storage/game/tw/shalum-br37/twb.py", line 445, in main
+    t.start()
+    ~~~~~~~^^
+  File "/Volumes/storage/game/tw/shalum-br37/twb.py", line 434, in start
+    self.run()
+    ~~~~~~~~^^
+  File "/Volumes/storage/game/tw/shalum-br37/twb.py", line 379, in run
+    village.run(config=config)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Volumes/storage/game/tw/shalum-br37/game/village.py", line 596, in run
+    self.run_farming()
+    ~~~~~~~~~~~~~~~~^^
+  File "/Volumes/storage/game/tw/shalum-br37/game/village.py", line 493, in run_farming
+    self.attack.run()
+    ~~~~~~~~~~~~~~~^^
+  File "/Volumes/storage/game/tw/shalum-br37/game/attack.py", line 84, in run
+    out_res = self.send_farm(target, template)
+  File "/Volumes/storage/game/tw/shalum-br37/game/attack.py", line 104, in send_farm
+    cached = self.can_attack(vid=target["id"], clear=False)
+  File "/Volumes/storage/game/tw/shalum-br37/game/attack.py", line 260, in can_attack
+    if self.scout(vid):
+       ~~~~~~~~~~^^^^^
+  File "/Volumes/storage/game/tw/shalum-br37/game/attack.py", line 245, in scout
+    if self.attack(vid, troops=troops):
+       ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/storage/game/tw/shalum-br37/game/attack.py", line 383, in attack
+    if self.has_owner_now(x, y) and vid not in self.extra_farm:
+       ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/Volumes/storage/game/tw/shalum-br37/game/attack.py", line 350, in has_owner_now
+    response = json.loads(pre_attack, strict=False)
+               ^^^^
+NameError: name 'json' is not defined. Did you forget to import 'json'?
