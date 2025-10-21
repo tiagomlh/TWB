@@ -222,18 +222,6 @@ class Extractor:
             return int(data.group(1))
         return 0
 
-    @staticmethod
-    def village_owner(res):
-        """
-        Detects the village owner
-        """
-        if type(res) != str:
-            res = res.text
-
-        data = re.search(r'<span class="relative_time" data-duration="(\d+)"', res)
-        if data:
-            return int(data.group(1))
-        return 0
 
     @staticmethod
     def report_table(res):
