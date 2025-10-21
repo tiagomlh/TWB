@@ -359,7 +359,7 @@ class AttackManager:
             "response object: %s ", response
         )
 
-        player_id = response.villages[0].player_id
+        player_id = response["villages"][0]["player_id"]
 
         self.logger.debug(
             "Village %s (%s|%s) player_id: %s", vid, x, y, player_id
