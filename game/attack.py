@@ -352,7 +352,7 @@ class AttackManager:
             "Village owner: %s", owner
         )
 
-        return owner.group(1) != "Bárbaros"
+        return owner != "Bárbaros"
 
 #         url = f"game.php?village={self.village_id}&screen=api&ajax=target_selection&input={x}%7C{y}&type=coord&request_id=1&limit=6&offset=0"
 #         pre_attack = self.wrapper.get_url(url)
