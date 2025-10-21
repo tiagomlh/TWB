@@ -1,8 +1,9 @@
 
-2025-10-20 23:27:09 - Requests - DEBUG - GET https://br137.tribalwars.com.br/game.php?village=5698&screen=api&ajax=target_selection&input=476%7C570&type=coord&request_id=1&limit=6&offset=0 [200]
-2025-10-20 23:27:09 - Attacks - DEBUG - Village (476|570) response pre_attack: {"villages":[{"id":"48519","x":"476","y":"570","name":"Aldeia de b\u00e1rbaros","player_id":"0","bonus_id":null,"tile_id":null,"village_type":"standard","player_name":null,"points":"140","distance":"5","event_special":"0","image":"https:\/\/dsbr.innogamescdn.com\/asset\/28bd5527\/graphic\/map\/icon\/v1_left_icon.webp"}],"request_id":1,"more":false,"offset":0}
-2025-10-20 23:27:09 - Attacks - DEBUG - response object: {'villages': [{'id': '48519', 'x': '476', 'y': '570', 'name': 'Aldeia de bárbaros', 'player_id': '0', 'bonus_id': None, 'tile_id': None, 'village_type': 'standard', 'player_name': None, 'points': '140', 'distance': '5', 'event_special': '0', 'image': 'https://dsbr.innogamescdn.com/asset/28bd5527/graphic/map/icon/v1_left_icon.webp'}], 'request_id': 1, 'more': False, 'offset': 0}
-I crashed :(   'dict' object has no attribute 'villages'
+
+2025-10-20 23:43:12 - Requests - DEBUG - GET https://br137.tribalwars.com.br/game.php?village=5698&screen=api&ajax=target_selection&input=476%7C570&type=coord&request_id=1&limit=6&offset=0 [200]
+2025-10-20 23:43:12 - Attacks - DEBUG - Village (476|570) response pre_attack: {"villages":[{"id":"48519","x":"476","y":"570","name":"Aldeia de b\u00e1rbaros","player_id":"0","bonus_id":null,"tile_id":null,"village_type":"standard","player_name":null,"points":"140","distance":"5","event_special":"0","image":"https:\/\/dsbr.innogamescdn.com\/asset\/28bd5527\/graphic\/map\/icon\/v1_left_icon.webp"}],"request_id":1,"more":false,"offset":0}
+2025-10-20 23:43:12 - Attacks - DEBUG - response object: {'villages': [{'id': '48519', 'x': '476', 'y': '570', 'name': 'Aldeia de bárbaros', 'player_id': '0', 'bonus_id': None, 'tile_id': None, 'village_type': 'standard', 'player_name': None, 'points': '140', 'distance': '5', 'event_special': '0', 'image': 'https://dsbr.innogamescdn.com/asset/28bd5527/graphic/map/icon/v1_left_icon.webp'}], 'request_id': 1, 'more': False, 'offset': 0}
+I crashed :(   name 'vid' is not defined
 Traceback (most recent call last):
   File "/Volumes/storage/game/tw/shalum-br37/twb.py", line 445, in main
     t.start()
@@ -32,7 +33,7 @@ Traceback (most recent call last):
   File "/Volumes/storage/game/tw/shalum-br37/game/attack.py", line 390, in attack
     if self.has_owner_now(x, y) and vid not in self.extra_farm:
        ~~~~~~~~~~~~~~~~~~^^^^^^
-  File "/Volumes/storage/game/tw/shalum-br37/game/attack.py", line 362, in has_owner_now
-    player_id = response.villages[0].player_id
-                ^^^^^^^^^^^^^^^^^
-AttributeError: 'dict' object has no attribute 'villages'
+  File "/Volumes/storage/game/tw/shalum-br37/game/attack.py", line 365, in has_owner_now
+    "Village %s (%s|%s) player_id: %s", vid, x, y, player_id
+                                        ^^^
+NameError: name 'vid' is not defined. Did you mean: 'id'?

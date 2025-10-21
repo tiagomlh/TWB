@@ -362,7 +362,7 @@ class AttackManager:
         player_id = response["villages"][0]["player_id"]
 
         self.logger.debug(
-            "Village %s (%s|%s) player_id: %s", vid, x, y, player_id
+            "Village (%s|%s) player_id: %s", x, y, player_id
         )
 
         return player_id != "0"
