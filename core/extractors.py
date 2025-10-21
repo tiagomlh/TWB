@@ -211,6 +211,19 @@ class Extractor:
         return data
 
     @staticmethod
+    def attack_owner(res):
+        """
+        Detects input fiels in the attack form
+        ... because there are many :)
+        <span class="village-info"><strong>Proprietário:</strong> Bárbaros <strong>Pontos:</strong> 140</span>
+        """
+        if res is not None and type(res) != str:
+            res = res.text
+#             data = re.findall(r'(?s)<input.+?name="(.+?)".+?value="(.*?)"', res)
+        data = re.findall(r'(?s)<span class="village-info"><strong>Proprietário:</strong> (.+?) <strong>Pontos:</strong>', res)
+        return data
+
+    @staticmethod
     def attack_duration(res):
         """
         Detects the duration of an attack
